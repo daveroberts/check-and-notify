@@ -10,12 +10,12 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const DAY_SUNDAY = 0
-const DAY_WEDNESDAY = 3
-const DAY_THURSDAY = 4
-const HOUR_6AM = 10
-const HOUR_12PM = 16
-const HOUR_6PM = 22
+const DAY_SUNDAY = 0;
+const DAY_WEDNESDAY = 3;
+const DAY_THURSDAY = 4;
+const HOUR_6AM = 10;
+const HOUR_12PM = 16;
+const HOUR_6PM = 22;
 
 (async function run() {
   console.log('Running report...');
