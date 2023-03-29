@@ -10,16 +10,23 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+const DAY_SUNDAY = 0
+const DAY_WEDNESDAY = 3
+const DAY_THURSDAY = 4
+const HOUR_6AM = 10
+const HOUR_12PM = 16
+const HOUR_6PM = 22
+
 (async function run() {
   console.log('Running report...');
   let now = new Date()
-  let day_of_month = now.getDate() // Independence Day == 4
-  let day_of_week = now.getDay() // 0 Sunday, 1 Monday
-  let hour = now.getHours() // 8AM == 8, 8PM == 20
-  if (day_of_week == 0 && hour == 18){ await send_email("Task: Take out trash") } // Sunday at 6PM
-  if (day_of_week == 3 && hour == 18){ await send_email("Task: Take out trash") } // Wednesday at 6PM
-  if (day_of_month == 28 && hour == 6){ await send_email("Task: Pay Citi CC Bill") } // 28th of the month at 6AM
-  if (day_of_week == 4 && hour == 12){ await send_email("Task: Epic Games free game of the week") } // Thursday at noon
+  let day_of_month = now.getDate()
+  let day_of_week = now.getDay()
+  let hour = now.getHours()
+  if (day_of_week == DAY_SUNDAY && hour == HOUR_6PM){ await send_email("Task: Take out trash") }
+  if (day_of_week == DAY_WEDNESDAY && hour == HOUR_6PM){ await send_email("Task: Take out trash") }
+  if (day_of_month == 28 && hour == HOUR_6AM){ await send_email("Task: Pay Citi CC Bill") }
+  if (day_of_week == DAY_THURSDAY && hour == HOUR_12PM){ await send_email("Task: Epic Games free game of the week") }
 })();
 
 async function send_email(subject){
